@@ -6,5 +6,4 @@ import org.springframework.data.repository.CrudRepository;
 // Não é possível usar tipos primitivos
 public interface ProductRepository extends CrudRepository<Product, Integer> {
 
-
 }
