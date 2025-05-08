@@ -19,10 +19,7 @@ public class CalculatorController {
     }
 
     @GetMapping(path = "subtract")
-    public int subtract(
-            @RequestParam(name = "a", defaultValue = "1") int a,
-            @RequestParam(name = "b", defaultValue = "1") int b)
-    {
+    public int subtract(@RequestParam(name = "a", defaultValue = "1") int a, @RequestParam(name = "b", defaultValue = "1") int b) {
         return a - b;
     }
 }

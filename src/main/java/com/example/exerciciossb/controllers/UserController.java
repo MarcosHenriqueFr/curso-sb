@@ -1,6 +1,6 @@
 package com.example.exerciciossb.controllers;
 
-import com.example.exerciciossb.models.User;
+import com.example.exerciciossb.model.entities.User;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
