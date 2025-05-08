@@ -4,6 +4,8 @@ import com.example.exerciciossb.model.entities.Product;
 import com.example.exerciciossb.model.repositories.ProductRepository;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -29,10 +31,22 @@ public class ProductController {
         return product;
     }
 
-    // Read
+    // Read -> Uma melhor abordagem seria se fosse uma consulta limitada por permissões
     @GetMapping
     public Iterable<Product> getProducts() {
         return productRepository.findAll();
+    }
+
+    @GetMapping(path = "name/{nameSection}")
+    public Iterable<Product> getProductsByName(@PathVariable String nameSection) {
+        return productRepository.findByNameContainingIgnoreCase(nameSection);
+    }
+
+    @GetMapping(path = "page/{numberPage}/{qtdPagina}")
+    public Iterable<Product> getProductByPage(@PathVariable int numberPage, @PathVariable int qtdPagina){
+
+        Pageable page = PageRequest.of(numberPage, qtdPagina);
+        return productRepository.findAll(page);
     }
 
     // Read por ID
